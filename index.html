@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quick-Test</title>
+</head>
+<body>
+<div id="button">
+    <button id="add" onclick="f()">Addition</button>
+    <button id="sub" onclick="f()">Subtraction</button>
+    <button id="multi" onclick="f()">Multiplication</button>
+    <button id="div" onclick="f()">Division</button>
+</div>
+<p id="time">Time remain: 20</p>
+<div id="reply">
+    <p id="question"></p>
+    <input type="text" id="answer">
+</div>
+</body>
+<script defer="defer">
+    function f() {
+        document.getElementById("button").innerHTML = "<b>Begin!</b>"
+    }
+    document.getElementById("add").addEventListener("click", function () {
+        let time_remain = 20
+        let n2 = 0
+        let n1 = 0
+        let score = 0
+        let answer = ""
+        let interval = setInterval(function () {
+            time_remain -= 1
+            let time = document.getElementById("time")
+            time.innerText = `Time remain: ${time_remain}`
+            if (time_remain === 0) {
+                time.innerText = `Time up!`
+                clearInterval(interval)
+            }
+        }, 1000)
+        let interval2 = setInterval(function () {
+            if (document.getElementById("time").innerText != "Time up!") {
+                if (answer == (n1 + n2)) {
+                    score += 1
+                    time_remain = 20
+                    document.getElementById("time").innerText = `Time remain: ${time_remain}`
+                    answer = document.getElementById("answer").value
+                    n1 = Math.floor(Math.random() * 100)
+                    n2 = Math.floor(Math.random() * 100)
+                    console.log(n1 + n2)
+                    console.log(answer == (n1 + n2))
+                    document.getElementById("question").innerText = `${n1} + ${n2}`
+                    document.getElementById("answer").value = ""
+                } else {
+                    answer = document.getElementById("answer").value
+                }
+            } else {
+                document.getElementById("reply").innerHTML = `<p>Score: ${score}</p><p>Answer: ${n1 + n2}</p></p>`;
+                clearInterval(interval2)
+            }
+        })
+    })
+
+
+</script>
+</html>
