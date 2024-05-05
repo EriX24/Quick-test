@@ -58,7 +58,123 @@
             }
         })
     })
-
+    document.getElementById("sub").addEventListener("click", function () {
+        let time_remain = 20
+        let n2 = 0
+        let n1 = 0
+        let score = 0
+        let answer = ""
+        let interval = setInterval(function () {
+            time_remain -= 1
+            let time = document.getElementById("time")
+            time.innerText = `Time remain: ${time_remain}`
+            if (time_remain === 0) {
+                time.innerText = `Time up!`
+                clearInterval(interval)
+            }
+        }, 1000)
+        let interval2 = setInterval(function () {
+            if (document.getElementById("time").innerText != "Time up!") {
+                if (answer == (n1 - n2)) {
+                    score += 1
+                    time_remain = 20
+                    document.getElementById("time").innerText = `Time remain: ${time_remain}`
+                    answer = document.getElementById("answer").value
+                    n1 = Math.floor(Math.random() * 100)
+                    n2 = Math.floor(Math.random() * n1)
+                    console.log(n1 - n2)
+                    console.log(answer == (n1 - n2))
+                    document.getElementById("question").innerText = `${n1} - ${n2}`
+                    document.getElementById("answer").value = ""
+                } else {
+                    answer = document.getElementById("answer").value
+                }
+            } else {
+                document.getElementById("reply").innerHTML = `<p>Score: ${score}</p><p>Answer: ${n1 - n2}</p></p>`;
+                clearInterval(interval2)
+            }
+        })
+    })
+    document.getElementById("multi").addEventListener("click", function () {
+        let time_remain = 20
+        let n2 = 0
+        let n1 = 0
+        let score = 0
+        let answer = ""
+        let interval = setInterval(function () {
+            time_remain -= 1
+            let time = document.getElementById("time")
+            time.innerText = `Time remain: ${time_remain}`
+            if (time_remain === 0) {
+                time.innerText = `Time up!`
+                clearInterval(interval)
+            }
+        }, 1000)
+        let interval2 = setInterval(function () {
+            if (document.getElementById("time").innerText != "Time up!") {
+                if (answer == (n1 * n2)) {
+                    score += 1
+                    time_remain = 20
+                    document.getElementById("time").innerText = `Time remain: ${time_remain}`
+                    answer = document.getElementById("answer").value
+                    n1 = Math.floor(Math.random() * 9)
+                    n2 = Math.floor(Math.random() * 20)
+                    console.log(n1 - n2)
+                    console.log(answer == (n1 * n2))
+                    document.getElementById("question").innerText = `${n1} * ${n2}`
+                    document.getElementById("answer").value = ""
+                } else {
+                    answer = document.getElementById("answer").value
+                }
+            } else {
+                document.getElementById("reply").innerHTML = `<p>Score: ${score}</p><p>Answer: ${n1 * n2}</p></p>`;
+                clearInterval(interval2)
+            }
+        })
+    })
+    document.getElementById("div").addEventListener("click", function () {
+        let time_remain = 20
+        let n2 = 0
+        let n1 = 0
+        n2 = Math.floor(Math.random() * 9) + 1
+        n1 = n2 * Math.floor(Math.random() * 35)
+        console.log(n1 / n2)
+        let score = 0
+        let answer = ""
+        let interval = setInterval(function () {
+            time_remain -= 1
+            let time = document.getElementById("time")
+            time.innerText = `Time remain: ${time_remain}`
+            if (time_remain === 0) {
+                time.innerText = `Time up!`
+                clearInterval(interval)
+            }
+        }, 1000)
+        let interval2 = setInterval(function () {
+            if (document.getElementById("time").innerText != "Time up!") {
+                if (answer == (n1 / n2)) {
+                    score += 1
+                    time_remain = 20
+                    document.getElementById("time").innerText = `Time remain: ${time_remain}`
+                    answer = document.getElementById("answer").value
+                    n2 = Math.floor(Math.random() * 9) + 1
+                    n1 = n2 * Math.floor(Math.random() * 35)
+                    console.log(n1 / n2)
+                    console.log(answer == (n1 / n2))
+                    document.getElementById("question").innerText = `${n1} / ${n2}`
+                    document.getElementById("answer").value = ""
+                } else {
+                    console.log(n1)
+                    console.log(n2)
+                    answer = document.getElementById("answer").value
+                    document.getElementById("question").innerText = `${n1} / ${n2}`
+                }
+            } else {
+                document.getElementById("reply").innerHTML = `<p>Score: ${score}</p><p>Answer: ${n1 / n2}</p></p>`;
+                clearInterval(interval2)
+            }
+        })
+    })
 
 </script>
 </html>
